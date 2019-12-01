@@ -1,0 +1,5 @@
+app\servlets\guru_upload.class
+app\servlets\ListServlet.class
+app\model\Model.class
+app\servlets\AddServlet.class
+app\entities\User.class
