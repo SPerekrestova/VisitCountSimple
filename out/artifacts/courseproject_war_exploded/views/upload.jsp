@@ -9,7 +9,7 @@
     </div>
     <div>
         <form method="post" enctype="multipart/form-data" >
-            <input type="file"  name="guru_file" size="50" />
+            <input type="file"  name="file" size="50" />
             <input type="submit" value="Upload" />
         </form>
     </div>

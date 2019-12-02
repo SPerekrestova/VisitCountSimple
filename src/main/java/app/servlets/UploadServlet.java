@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class UploadServlet extends HttpServlet {
@@ -32,6 +34,7 @@ public class UploadServlet extends HttpServlet {
                 for(FileItem item : multiparts){
                     if(!item.isFormField()){
                         String name = new File(item.getName()).getName();
+                        name= new String(name.getBytes("Cp1251"), StandardCharsets.UTF_8);
                         item.write( new File("C:\\temp" + File.separator + name));
                     }
                 }
@@ -40,9 +43,10 @@ public class UploadServlet extends HttpServlet {
             } catch (Exception ex) {
                 request.setAttribute("gurumessage", "File Upload Failed due to " + ex);
             }
-        }else{
-            request.setAttribute("gurumessage","No File found");
+        }else {
+            request.setAttribute("gurumessage", "No File found");
         }
+
         request.getRequestDispatcher("views/result.jsp").forward(request, response);
     }
 }

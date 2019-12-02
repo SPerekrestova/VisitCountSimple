@@ -1,5 +1,6 @@
 package app.servlets;
 
+import app.entities.File;
 import app.entities.User;
 import app.model.Model;
 
@@ -23,9 +24,9 @@ public class AddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         String password = req.getParameter("pass");
-        User user = new User(name, password);
+        File file = new File(name, password);
         Model model = Model.getInstance();
-        model.add(user);
+        model.add(file);
 
         req.setAttribute("userName", name);
         doGet(req, resp);

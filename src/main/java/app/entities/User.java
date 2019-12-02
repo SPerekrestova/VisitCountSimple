@@ -1,5 +1,7 @@
 package app.entities;
 
+import java.util.Objects;
+
 public class User {
     private String name;
     private String password;
@@ -43,8 +45,8 @@ public class User {
 
         User user = (User) o;
 
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        return password != null ? password.equals(user.password) : user.password == null;
+        if (!Objects.equals(name, user.name)) return false;
+        return Objects.equals(password, user.password);
 
     }
 
