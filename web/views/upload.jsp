@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Guru Uploading File</title>
@@ -9,8 +8,8 @@
         <h1>Upload file</h1>
     </div>
     <div>
-        <form method="post" >
-            <input type="file" name="guru_file" size="50" />
+        <form method="post" enctype="multipart/form-data" >
+            <input type="file"  name="guru_file" size="50" />
             <input type="submit" value="Upload" />
         </form>
     </div>

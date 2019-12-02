@@ -4,6 +4,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,10 +16,14 @@ import java.util.List;
 public class UploadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-//    public guru_upload() {
-        //super();
-        // TODO Auto-generated constructor stub
-//    }
+    public UploadServlet() {
+        super();
+    }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/upload.jsp");
+        requestDispatcher.forward(req, resp);
+    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(ServletFileUpload.isMultipartContent(request)){
@@ -36,12 +41,8 @@ public class UploadServlet extends HttpServlet {
                 request.setAttribute("gurumessage", "File Upload Failed due to " + ex);
             }
         }else{
-
             request.setAttribute("gurumessage","No File found");
         }
-        request.getRequestDispatcher("/result.jsp").forward(request, response);
-
+        request.getRequestDispatcher("views/result.jsp").forward(request, response);
     }
-
-
 }
