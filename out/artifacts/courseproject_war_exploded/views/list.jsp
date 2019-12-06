@@ -2,21 +2,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Users</title>
+    <title>Файлы</title>
 </head>
 
 <body>
 <div>
-    <h1>Super app!</h1>
+    <h1>Учет посещений!</h1>
 </div>
 
 <div>
     <div>
         <div>
-            <h2>Users</h2>
+            <h2>Files</h2>
         </div>
         <%
-            List<String> names = (List<String>) request.getAttribute("userNames");
+            List<String> names = (List<String>) request.getAttribute("fileNames");
 
             if (names != null && !names.isEmpty()) {
                 out.println("<ui>");
@@ -24,13 +24,13 @@
                     out.println("<li>" + s + "</li>");
                 }
                 out.println("</ui>");
-            } else out.println("<p>There are no users yet!</p>");
+            } else out.println("<p>Вы еще не загрузили ни одного файла!</p>");
         %>
     </div>
 </div>
 
 <div>
-    <button onclick="location.href='/courseproject_war_exploded'">Back to main</button>
+    <button onclick="location.href='/'">Вернуться на главный экран</button>
 </div>
 </body>
 </html>

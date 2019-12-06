@@ -1,5 +1,6 @@
 package app.servlets;
 
+import app.model.Model;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -35,7 +36,11 @@ public class UploadServlet extends HttpServlet {
                     if(!item.isFormField()){
                         String name = new File(item.getName()).getName();
                         name= new String(name.getBytes("Cp1251"), StandardCharsets.UTF_8);
-                        item.write( new File("C:\\temp" + File.separator + name));
+                        File filePath = new File("C:\\temp" + File.separator + name);
+                        item.write(filePath);
+                        app.entities.File file = new app.entities.File(filePath.getAbsolutePath(), name);
+                        Model model = Model.getInstance();
+                        model.add(file);
                     }
                 }
                 //File uploaded successfully
@@ -47,6 +52,7 @@ public class UploadServlet extends HttpServlet {
             request.setAttribute("gurumessage", "No File found");
         }
 
-        request.getRequestDispatcher("views/result.jsp").forward(request, response);
+        //request.getRequestDispatcher("views/upload.jsp").forward(request, response);
+        doGet(request, response);
     }
 }
