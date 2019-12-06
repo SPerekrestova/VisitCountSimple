@@ -7,6 +7,8 @@
     <title>Downloading Guru Example</title>
 </head>
 <body>
-Guru Downloading File<a href="${pageContext.request.contextPath}/download">Download here!!!</a>
+    <div>
+        Guru Downloading File<a href="${pageContext.request.contextPath}/download">Download here!!!</a>
+    </div>
 </body>
 </html>

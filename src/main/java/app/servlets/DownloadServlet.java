@@ -1,8 +1,11 @@
 package app.servlets;
 
+import app.model.Model;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,23 +19,29 @@ public class DownloadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Model model = Model.getInstance();
+        List<String> names = model.list();
+        request.setAttribute("fileNames", names);
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        String gurufile = "test.txt";
-        String gurupath = "c:\\temp";
-        response.setContentType("APPLICATION/OCTET-STREAM");
-        response.setHeader("Content-Disposition", "attachment; filename=\""
-                + gurufile + "\"");
+        List<String> namesToDownload = (List<String>) request.getAttribute("fileNames");
 
-        FileInputStream fileInputStream = new FileInputStream(gurupath
-                + gurufile);
-
-        int i;
-        while ((i = fileInputStream.read()) != -1) {
-            out.write(i);
+        if (namesToDownload != null && !namesToDownload.isEmpty()) {
+            for (String s : namesToDownload) {
+                String gurupath = "c:\\temp";
+                response.setContentType("APPLICATION/OCTET-STREAM");
+                response.setHeader("Content-Disposition", "attachment; filename=\""
+                        + s + "\"");
+                FileInputStream fileInputStream = new FileInputStream(gurupath
+                        + s);
+                int i;
+                while ((i = fileInputStream.read()) != -1) {
+                    out.write(i);
+                }
+                fileInputStream.close();
+                out.close();
+            }
         }
-        fileInputStream.close();
-        out.close();
     }
 
 
