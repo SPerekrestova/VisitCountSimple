@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.Date;
 
 public class Write {
-
     @SuppressWarnings("deprecation")
     public static void writeIntoExcel(String file) throws FileNotFoundException, IOException, FileNotFoundException {
         Workbook book = new HSSFWorkbook();

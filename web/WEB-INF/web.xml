@@ -36,4 +36,14 @@
         <servlet-name>download</servlet-name>
         <url-pattern>/download</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>result</servlet-name>
+        <servlet-class>app.servlets.ResultServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>result</servlet-name>
+        <url-pattern>/result</url-pattern>
+    </servlet-mapping>
 </web-app>

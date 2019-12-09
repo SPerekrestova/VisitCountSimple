@@ -1,5 +1,8 @@
-app\servlets\guru_upload.class
+app\entities\File.class
+app\servlets\DownloadServlet.class
+app\servlets\ResultServlet.class
+app\parsing\Read.class
+app\servlets\UploadServlet.class
+app\parsing\Write.class
 app\servlets\ListServlet.class
 app\model\Model.class
-app\servlets\AddServlet.class
-app\entities\User.class

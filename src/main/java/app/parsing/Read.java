@@ -17,13 +17,13 @@ public class Read {
         HSSFRow row = myExcelSheet.getRow(0);
 
         if(row.getCell(0).getCellType() == HSSFCell.CELL_TYPE_STRING){
-            String name = row.getCell(0).getStringCellValue();
-            System.out.println("name : " + name);
+            String card = row.getCell(0).getStringCellValue();
+            System.out.println("card : " + card);
         }
 
         if(row.getCell(1).getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
-            Date birthdate = row.getCell(1).getDateCellValue();
-            System.out.println("birthdate :" + birthdate);
+            Date name = row.getCell(1).getDateCellValue();
+            System.out.println("name :" + name);
         }
         myExcelBook.close();
     }
