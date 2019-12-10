@@ -22,26 +22,26 @@ public class DownloadServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Model model = Model.getInstance();
-        List<String> names = model.pathList();
-        request.setAttribute("fileNames", names);
+        List<String> paths = model.pathList();
+        List<String> names = model.nameList();
+        request.setAttribute("fileNames", paths);
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         List<String> namesToDownload = (List<String>) request.getAttribute("fileNames");
-
+        int j=0;
         if (namesToDownload != null && !namesToDownload.isEmpty()) {
             for (String s : namesToDownload) {
-                String gurupath = "c:\\temp";
                 response.setContentType("APPLICATION/OCTET-STREAM");
                 response.setHeader("Content-Disposition", "attachment; filename=\""
-                        + s + "\"");
-                FileInputStream fileInputStream = new FileInputStream(gurupath
-                        + s);
+                        + names.get(j) + "\"");
+                FileInputStream fileInputStream = new FileInputStream(s);
                 int i;
                 while ((i = fileInputStream.read()) != -1) {
                     out.write(i);
                 }
                 fileInputStream.close();
                 out.close();
+                j++;
             }
         }
     }
