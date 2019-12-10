@@ -11,29 +11,34 @@ import org.apache.poi.ss.usermodel.Row;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class Read {
 
-    public static void readFromExcel(String file) throws IOException {
+    public static HashMap readFromExcel(String file) throws IOException {
         HSSFWorkbook myExcelBook = new HSSFWorkbook(new FileInputStream(file));
         HSSFSheet myExcelSheet = myExcelBook.getSheetAt(0);
-
+        HashMap<String, HashMap<String, String>> resultMap = new HashMap<>();
+        HashMap<String, String> valuesMap = new HashMap<>();
+        String card = "";
+        String name = "";
         for (Row myrow : myExcelSheet) {
             for (Cell mycell : myrow) {
                 switch (mycell.getCellType()) {
                     case HSSFCell.CELL_TYPE_NUMERIC:
-                        String card = String.valueOf((int)mycell.getNumericCellValue());
-                        System.out.println("card : " + card);
+                        card = String.valueOf((int)mycell.getNumericCellValue());
                         break;
                     case HSSFCell.CELL_TYPE_STRING:
-                        String name = mycell.getStringCellValue();
-                        System.out.println("name :" + name);
+                        name = mycell.getStringCellValue();
                         break;
                     default:
                 }
+                valuesMap.put(card, name);
             }
         }
+        resultMap.put("group", valuesMap);
         myExcelBook.close();
+        return resultMap;
     }
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 @WebServlet("/result")
@@ -19,12 +20,13 @@ public class ResultServlet  extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Model model = Model.getInstance();
         List<String> paths = model.pathList();
+        HashMap resultMap = new HashMap<>();
         if (paths != null && !paths.isEmpty()) {
             for (String s : paths) {
-                Read.readFromExcel(s);
+               resultMap = Read.readFromExcel(s);
             }
         }
-        req.setAttribute("fileNames", paths);
+        req.setAttribute("groupList", resultMap);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/result.jsp");
         requestDispatcher.forward(req, resp);

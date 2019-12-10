@@ -1,4 +1,7 @@
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.io.IOException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -10,15 +13,20 @@
         <div>
             <h2>Files</h2>
         </div>
-        <%
-            List<String> names = (List<String>) request.getAttribute("fileNames");
 
-            if (names != null && !names.isEmpty()) {
-                out.println("<ui>");
-                for (String s : names) {
-                    out.println("<li>" + s + "</li>");
+        <%
+           HashMap<String, HashMap<String, String>> groupList = (HashMap<String, HashMap<String, String>>) request.getAttribute("groupList");
+           HashMap<String, String> students = (HashMap<String, String>) groupList.get("group");
+
+            if (!students.isEmpty()) {
+                for (Map.Entry<String, String> entry  : students.entrySet()) {
+                    try {
+                        out.println(entry.getKey() + " " + entry.getValue() + "<br>");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-                out.println("</ui>");
+                out.print("<br>");
             } else out.println("<p>Вы еще не загрузили ни одного файла!</p>");
         %>
     </div>
