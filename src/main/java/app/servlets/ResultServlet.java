@@ -16,13 +16,13 @@ public class ResultServlet  extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Model model = Model.getInstance();
-        List<String> names = model.list();
-        if (names != null && !names.isEmpty()) {
-            for (String s : names) {
+        List<String> paths = model.pathList();
+        if (paths != null && !paths.isEmpty()) {
+            for (String s : paths) {
                 Read.readFromExcel(s);
             }
         }
-        req.setAttribute("fileNames", names);
+        req.setAttribute("fileNames", paths);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/result.jsp");
         requestDispatcher.forward(req, resp);

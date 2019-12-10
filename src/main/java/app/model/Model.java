@@ -23,11 +23,16 @@ public class Model {
         model.add(file);
     }
 
-    public List<String> list() {
+    public List<String> pathList() {
+        return model.stream()
+                .map(File::getFilePath)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> nameList() {
         return model.stream()
                 .map(File::getFileName)
                 .collect(Collectors.toList());
     }
-
 
 }

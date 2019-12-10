@@ -20,7 +20,7 @@ public class DownloadServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Model model = Model.getInstance();
-        List<String> names = model.list();
+        List<String> names = model.pathList();
         request.setAttribute("fileNames", names);
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
