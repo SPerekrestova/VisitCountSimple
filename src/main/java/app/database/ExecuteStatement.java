@@ -1,6 +1,10 @@
 package app.database;
 
 import java.sql.*;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static java.sql.DriverManager.*;
 
 public class ExecuteStatement {
 
@@ -12,17 +16,31 @@ public class ExecuteStatement {
     private static Statement stmt;
     private static ResultSet rs;
 
-    public static void initConnection() throws SQLException {
+    public static void initConnection() throws SQLException, ClassNotFoundException {
         // opening database connection to MySQL server
+        Class.forName("org.sqlite.JDBC");
         con = DriverManager.getConnection(url);
         System.out.println("Success!");
 
         // getting Statement object to execute query
         stmt = con.createStatement();
     }
-    public static void ExecuteInsert(String query) {
+    public static void ExecuteInsert(List<String> query) {
         try {
-            rs = stmt.executeQuery(query);
+            con.setAutoCommit(false);
+            AtomicInteger i = new AtomicInteger();
+            query.forEach((line) -> {
+                try {
+                    stmt.addBatch(line);
+                    i.getAndIncrement();
+                    if (i.get() % 1000 == 0 || i.get() == query.size()) {
+                        stmt.executeBatch(); // Execute every 1000 items.
+                    }
+                    con.commit();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -38,10 +56,5 @@ public class ExecuteStatement {
         //close connection ,stmt and resultset here
         try { con.close(); } catch(SQLException se) { /*can't do anything */ }
         try { stmt.close(); } catch(SQLException se) { /*can't do anything */ }
-        try { rs.close(); } catch(SQLException se) { /*can't do anything */ }
-    }
-
-    public static void main(String[] args) throws SQLException {
-        initConnection();
     }
 }

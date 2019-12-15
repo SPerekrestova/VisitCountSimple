@@ -16,7 +16,7 @@
 
         <%
            HashMap<String, HashMap<String, String>> groupList = (HashMap<String, HashMap<String, String>>) request.getAttribute("groupList");
-           HashMap<String, String> students = (HashMap<String, String>) groupList.get("group");
+           HashMap<String, String> students = (HashMap<String, String>) groupList.values();
 
             if (!students.isEmpty()) {
                 for (Map.Entry<String, String> entry  : students.entrySet()) {

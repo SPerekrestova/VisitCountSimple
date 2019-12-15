@@ -16,29 +16,35 @@ import java.util.Iterator;
 
 public class Read {
 
-    public static HashMap readFromExcel(String file) throws IOException {
-        HSSFWorkbook myExcelBook = new HSSFWorkbook(new FileInputStream(file));
-        HSSFSheet myExcelSheet = myExcelBook.getSheetAt(0);
+    public static HashMap readGroupFromExcel(String file) throws IOException {
+        HSSFWorkbook groupExcel = new HSSFWorkbook(new FileInputStream(file));
+        HSSFSheet groupExcelSheet = groupExcel.getSheetAt(0);
         HashMap<String, HashMap<String, String>> resultMap = new HashMap<>();
         HashMap<String, String> valuesMap = new HashMap<>();
         String card = "";
         String name = "";
-        for (Row myrow : myExcelSheet) {
-            for (Cell mycell : myrow) {
-                switch (mycell.getCellType()) {
-                    case HSSFCell.CELL_TYPE_NUMERIC:
-                        card = String.valueOf((int)mycell.getNumericCellValue());
-                        break;
-                    case HSSFCell.CELL_TYPE_STRING:
-                        name = mycell.getStringCellValue();
-                        break;
-                    default:
+        String group = "";
+        for (Row student : groupExcelSheet) {
+            for (Cell param : student) {
+                if (0 == student.getRowNum()){
+                    group = student.getCell(1).getStringCellValue();
+                } else {
+                    switch (param.getCellType()) {
+                        case HSSFCell.CELL_TYPE_NUMERIC:
+                            card = String.valueOf((int) param.getNumericCellValue());
+                            break;
+                        case HSSFCell.CELL_TYPE_STRING:
+                            name = param.getStringCellValue();
+                            break;
+                        default:
+                    }
+                    valuesMap.put(card, name);
                 }
-                valuesMap.put(card, name);
+
             }
         }
-        resultMap.put("group", valuesMap);
-        myExcelBook.close();
+        resultMap.put(group, valuesMap);
+        groupExcel.close();
         return resultMap;
     }
 }

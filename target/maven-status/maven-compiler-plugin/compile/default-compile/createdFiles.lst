@@ -1,6 +1,8 @@
+app\database\PrepareStatement.class
 app\entities\File.class
 app\servlets\DownloadServlet.class
 app\servlets\ResultServlet.class
+app\database\ExecuteStatement.class
 app\parsing\Read.class
 app\servlets\UploadServlet.class
 app\parsing\Write.class

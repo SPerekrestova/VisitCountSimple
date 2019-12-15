@@ -1,8 +1,10 @@
 C:\Users\Svetlana\IdeaProjects\courseproject\src\main\java\app\servlets\DownloadServlet.java
 C:\Users\Svetlana\IdeaProjects\courseproject\src\main\java\app\model\Model.java
 C:\Users\Svetlana\IdeaProjects\courseproject\src\main\java\app\entities\File.java
+C:\Users\Svetlana\IdeaProjects\courseproject\src\main\java\app\database\PrepareStatement.java
 C:\Users\Svetlana\IdeaProjects\courseproject\src\main\java\app\parsing\Write.java
 C:\Users\Svetlana\IdeaProjects\courseproject\src\main\java\app\parsing\Read.java
 C:\Users\Svetlana\IdeaProjects\courseproject\src\main\java\app\servlets\ResultServlet.java
+C:\Users\Svetlana\IdeaProjects\courseproject\src\main\java\app\database\ExecuteStatement.java
 C:\Users\Svetlana\IdeaProjects\courseproject\src\main\java\app\servlets\ListServlet.java
 C:\Users\Svetlana\IdeaProjects\courseproject\src\main\java\app\servlets\UploadServlet.java
