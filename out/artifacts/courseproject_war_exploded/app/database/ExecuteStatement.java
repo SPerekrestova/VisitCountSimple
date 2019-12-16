@@ -56,6 +56,5 @@ public class ExecuteStatement {
         //close connection ,stmt and resultset here
         try { con.close(); } catch(SQLException se) { /*can't do anything */ }
         try { stmt.close(); } catch(SQLException se) { /*can't do anything */ }
-
     }
 }

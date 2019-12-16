@@ -15,8 +15,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-@WebServlet("/result")
-public class ResultServlet  extends HttpServlet {
+@WebServlet("/uploadSchedule")
+public class UploadScheduleServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,7 +26,7 @@ public class ResultServlet  extends HttpServlet {
         HashMap resultMap = new HashMap<>();
         if (paths != null && !paths.isEmpty()) {
             for (String s : paths) {
-               resultMap = Read.readGroupFromExcel(s);
+               resultMap = (HashMap) Read.readScheduleFromExcel(s);
             }
             try {
                 stmt.prepareGroupInsert(resultMap);
