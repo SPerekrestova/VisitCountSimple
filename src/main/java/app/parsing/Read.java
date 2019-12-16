@@ -12,7 +12,6 @@ import org.apache.poi.ss.util.CellUtil;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static java.util.Map.Entry.comparingByKey;
 import static java.util.stream.Collectors.toMap;
@@ -53,16 +52,13 @@ public class Read {
     public static Object readScheduleFromExcel(String file) throws IOException {
         HSSFWorkbook scheduleExcel = new HSSFWorkbook(new FileInputStream(file));
         HSSFSheet scheduleExcelSheet = scheduleExcel.getSheetAt(0);
-        HashMap<String, Map<String, SortedSet<String>>> resultMap = new HashMap<>();
-        HashMap<Integer, Map<String, SortedSet<String>>> valuesMap = new HashMap<>();
+        HashMap<String, Map<Integer, SortedSet<String>>> resultMap = new HashMap<>();
+
         ArrayList<String> week_number = new ArrayList<>();
-       // ArrayList<String> days = new ArrayList<String>();
-        //ArrayList<String> time = new ArrayList<>();
         SortedSet<String> time = new TreeSet<String>();
-        Map<String, SortedSet<String>> lessons = new LinkedHashMap<>();  // ordered
-        Map<String, SortedSet<String>> sortedLessons = new LinkedHashMap<>();  // sorted
+        Map<Integer, SortedSet<String>> lessons = new HashMap<>();
         String regexDate = "([1-9]|[12]\\d|3[01])";
-        String group = "ИСТ-722";
+        String group = "ИСТ-722"; //TODO: remove hardcode for group
 
         DataFormatter dataFormatter = new DataFormatter();
         Row row;
@@ -83,15 +79,14 @@ public class Read {
                     }
                     if (dataFormatter.formatCellValue(cell).contains("ИСТ-722")) {
                         timeIndex = rowIndex +1;
-                        //days.add(String.valueOf(currentDay));
-                        //String time = dataFormatter.formatCellValue(CellUtil.getCell(scheduleExcelSheet.getRow(timeIndex), columnIndex));
                         time.add(dataFormatter.formatCellValue(CellUtil.getCell(scheduleExcelSheet.getRow(timeIndex), columnIndex)));
-                        lessons.put(String.valueOf(currentDay), time);
+                        lessons.put(currentDay, time);
                     }
                 }
             }
         }
-
+        Map<Integer, SortedSet<String>> sortedLessons = new TreeMap<Integer, SortedSet<String>>(lessons);
+        resultMap.put(group, sortedLessons);
         scheduleExcel.close();
         return resultMap;
     }

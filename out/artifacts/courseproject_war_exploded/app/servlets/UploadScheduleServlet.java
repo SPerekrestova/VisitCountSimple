@@ -29,7 +29,7 @@ public class UploadScheduleServlet extends HttpServlet {
                resultMap = (HashMap) Read.readScheduleFromExcel(s);
             }
             try {
-                stmt.prepareGroupInsert(resultMap);
+                stmt.prepareSchedulerInsert(resultMap);
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
