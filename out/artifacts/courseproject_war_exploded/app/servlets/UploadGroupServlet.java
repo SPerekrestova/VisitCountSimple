@@ -36,7 +36,7 @@ public class UploadGroupServlet extends HttpServlet {
         }
         req.setAttribute("groupList", resultMap);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/result.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/uploadGroup.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

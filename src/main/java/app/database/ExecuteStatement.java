@@ -21,10 +21,12 @@ public class ExecuteStatement {
         Class.forName("org.sqlite.JDBC");
         con = DriverManager.getConnection(url);
         System.out.println("Success!");
+        con.setAutoCommit(false);
 
         // getting Statement object to execute query
         stmt = con.createStatement();
     }
+
     public static void ExecuteInsert(List<String> query) {
         try {
             con.setAutoCommit(false);
@@ -45,16 +47,38 @@ public class ExecuteStatement {
             e.printStackTrace();
         }
     }
-    public static void ExecuteSelect(String query) {
+
+    public static ResultSet ExecuteSelect(String query) {
         try {
             rs = stmt.executeQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return rs;
     }
+
     public static void closeConnection() {
         //close connection ,stmt and resultset here
-        try { con.close(); } catch(SQLException se) { /*can't do anything */ }
-        try { stmt.close(); } catch(SQLException se) { /*can't do anything */ }
+        try {
+            con.close();
+        } catch (SQLException se) { /*can't do anything */ }
+        try {
+            stmt.close();
+        } catch (SQLException se) { /*can't do anything */ }
     }
+
+//    public static void main(String[] args) throws SQLException {
+//        try {
+//            initConnection();
+//            rs = ExecuteSelect("SELECT * FROM main.'Group' WHERE group_name = 'ИСТ-722';");
+//            while (rs.next()) {
+//                String lastName = rs.getString("card");
+//                System.out.println(lastName + "\n");
+//            }
+//            closeConnection();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 }

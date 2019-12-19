@@ -34,9 +34,9 @@ public class UploadScheduleServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        req.setAttribute("groupList", resultMap);
+        req.setAttribute("schedule", resultMap);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/result.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/uploadSchedule.jsp");
         requestDispatcher.forward(req, resp);
     }
 }
