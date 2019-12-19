@@ -79,7 +79,7 @@ public class Read {
                     }
                     if (dataFormatter.formatCellValue(cell).contains("ИСТ-722")) {
                         timeIndex = rowIndex +1;
-                        time.add(dataFormatter.formatCellValue(CellUtil.getCell(scheduleExcelSheet.getRow(timeIndex), columnIndex)));
+                        time.add(dataFormatter.formatCellValue(CellUtil.getCell(scheduleExcelSheet.getRow(timeIndex), columnIndex)).substring(0, 5));
                         lessons.put(currentDay, time);
                     }
                 }
