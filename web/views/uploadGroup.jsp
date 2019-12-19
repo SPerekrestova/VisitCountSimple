@@ -15,12 +15,12 @@
         </div>
 
         <%
-            if (request.getAttribute("schedule") != null){
-                out.println("<p>Расписание загружено успешно!</p>");
+           if (request.getAttribute("groupList") != null){
+               out.println("<p>Список групп загружен успешно!</p>");
 
-            } else {
-                out.println("<p>Вы еще не загрузили ни одного файла!</p>");
-            }
+           } else {
+               out.println("<p>Вы еще не загрузили ни одного файла!</p>");
+           }
         %>
     </div>
 </div>

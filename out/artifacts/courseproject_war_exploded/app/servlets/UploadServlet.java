@@ -6,6 +6,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +22,7 @@ import java.util.List;
 public class UploadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+
     public UploadServlet() {
         super();
     }
@@ -28,6 +30,8 @@ public class UploadServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/upload.jsp");
         requestDispatcher.forward(req, resp);
+
+
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,7 +58,6 @@ public class UploadServlet extends HttpServlet {
             request.setAttribute("gurumessage", "No File found");
         }
 
-        //request.getRequestDispatcher("views/upload.jsp").forward(request, response);
         doGet(request, response);
     }
 }

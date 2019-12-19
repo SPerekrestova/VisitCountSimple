@@ -15,19 +15,12 @@
         </div>
 
         <%
-           HashMap<String, HashMap<String, String>> groupList = (HashMap<String, HashMap<String, String>>) request.getAttribute("groupList");
-           HashMap<String, String> students = (HashMap<String, String>) groupList.values();
+            if (request.getAttribute("schedule") != null){
+                out.println("<p>Расписание загружено успешно!</p>");
 
-            if (!students.isEmpty()) {
-                for (Map.Entry<String, String> entry  : students.entrySet()) {
-                    try {
-                        out.println(entry.getKey() + " " + entry.getValue() + "<br>");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                out.print("<br>");
-            } else out.println("<p>Вы еще не загрузили ни одного файла!</p>");
+            } else {
+                out.println("<p>Вы еще не загрузили ни одного файла!</p>");
+            }
         %>
     </div>
 </div>
