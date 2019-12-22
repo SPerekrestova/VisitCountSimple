@@ -22,11 +22,9 @@ public class CreateFileServlet extends HttpServlet {
         String selectGroup = "SELECT card, student FROM main.'Group' WHERE group_name = 'ИСТ-722';";
         String selectSchedule = "SELECT lesson_num, day, time FROM main.'Schedule' WHERE group_name = 'ИСТ-722';";
         HashMap<Integer, String> groupMap = new HashMap<>();
-      //  HashMap<Integer, String> scheduleMap = new HashMap<>();
         HashMap<Integer, SortedSet<String>> lessons = new HashMap<>();
         SortedSet<String> time = new TreeSet<String>();
         int day = 0;
-
         try {
             ExecuteStatement.initConnection();
             ResultSet rs =  ExecuteStatement.ExecuteSelect(selectGroup);
@@ -44,7 +42,6 @@ public class CreateFileServlet extends HttpServlet {
 
             ExecuteStatement.initConnection();
             ResultSet rs2 =  ExecuteStatement.ExecuteSelect(selectSchedule);
-            int count = 0;
             while (rs2.next()) {
                 day = Integer.parseInt(rs2.getString("day"));
                 //день помещается впервые
