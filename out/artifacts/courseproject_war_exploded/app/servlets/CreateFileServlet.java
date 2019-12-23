@@ -3,6 +3,7 @@ package app.servlets;
 import app.database.ExecuteStatement;
 import app.parsing.Write;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -61,6 +62,10 @@ public class CreateFileServlet extends HttpServlet {
         } catch (Exception e) {
             System.out.println(Arrays.toString(e.getStackTrace()));
         }
+
+        request.setAttribute("result", "Success!");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/create.jsp");
+        requestDispatcher.forward(request, response);
     }
 
 
