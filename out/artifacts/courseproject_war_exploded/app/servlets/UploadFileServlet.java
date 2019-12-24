@@ -19,16 +19,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @WebServlet("/upload")
-public class UploadServlet extends HttpServlet {
+public class UploadFileServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
 
-    public UploadServlet() {
+    public UploadFileServlet() {
         super();
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/upload.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/uploadFile.jsp");
         requestDispatcher.forward(req, resp);
 
 
