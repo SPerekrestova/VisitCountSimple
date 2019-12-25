@@ -11,7 +11,7 @@ import java.util.*;
 
 public class Write {
     @SuppressWarnings("deprecation")
-    public static void writeIntoExcel(LinkedHashMap<Integer, String> groupMap, Map<Integer, SortedSet<String>> scheduleMap) throws FileNotFoundException, IOException, FileNotFoundException {
+    public static void writeIntoExcel(LinkedHashMap<Integer, String> groupMap, Map<Integer, SortedSet<String>> scheduleMap) throws IOException {
         Workbook book = new HSSFWorkbook();
         Sheet sheet = book.createSheet("Scheduler");
         File file = new File("C:\\Users\\Svetlana\\Desktop\\result.xls");

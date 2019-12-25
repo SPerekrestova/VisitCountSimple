@@ -3,10 +3,15 @@ package app.database;
 import java.sql.SQLException;
 import java.util.*;
 
+/*
+    Class for preparing statement with inbound data for executing in DB
+ */
+
 public class PrepareStatement {
 
     private ExecuteStatement executeStatement;
 
+    // Preparing inserting info about groups
     public void prepareGroupInsert(HashMap group) throws SQLException, ClassNotFoundException {
 
         executeStatement = new ExecuteStatement();
@@ -29,13 +34,13 @@ public class PrepareStatement {
                 у.printStackTrace();
             }
             finally {
-                executeStatement.initConnection();
-                executeStatement.ExecuteInsert(finalQuery);
-                executeStatement.closeConnection();
+                ExecuteStatement.initConnection();
+                ExecuteStatement.ExecuteInsert(finalQuery);
+                ExecuteStatement.closeConnection();
             }
         }
     }
-
+    // preparing inserting info for schedule
     public void prepareSchedulerInsert(HashMap scheduler) throws SQLException, ClassNotFoundException {
 
         executeStatement = new ExecuteStatement();
@@ -62,9 +67,9 @@ public class PrepareStatement {
                 у.printStackTrace();
             }
             finally {
-                executeStatement.initConnection();
-                executeStatement.ExecuteInsert(finalQuery);
-                executeStatement.closeConnection();
+                ExecuteStatement.initConnection();
+                ExecuteStatement.ExecuteInsert(finalQuery);
+                ExecuteStatement.closeConnection();
             }
         }
     }

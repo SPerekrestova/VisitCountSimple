@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/*
+    Model to store data about uploaded files
+ */
 public class Model {
     private static Model instance = new Model();
 
@@ -34,5 +37,4 @@ public class Model {
                 .map(File::getFileName)
                 .collect(Collectors.toList());
     }
-
 }

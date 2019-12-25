@@ -12,8 +12,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
 
+/*
+    Class for reading data from uploaded excel
+ */
 public class Read {
 
+    // Read info about groups
     public static HashMap<String, HashMap<String, String>> readGroupFromExcel(String file) throws IOException {
         HSSFWorkbook groupExcel = new HSSFWorkbook(new FileInputStream(file));
         HSSFSheet groupExcelSheet = groupExcel.getSheetAt(0);
@@ -44,7 +48,7 @@ public class Read {
         groupExcel.close();
         return resultMap;
     }
-
+    // Read info about schedule
     public static Object readScheduleFromExcel(String file) throws IOException {
         HSSFWorkbook scheduleExcel = new HSSFWorkbook(new FileInputStream(file));
         HSSFSheet scheduleExcelSheet = scheduleExcel.getSheetAt(0);

@@ -62,12 +62,10 @@ public class CreateFileServlet extends HttpServlet {
         } catch (Exception e) {
             System.out.println(Arrays.toString(e.getStackTrace()));
         }
-
         request.setAttribute("result", "Success!");
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/create.jsp");
         requestDispatcher.forward(request, response);
     }
-
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
